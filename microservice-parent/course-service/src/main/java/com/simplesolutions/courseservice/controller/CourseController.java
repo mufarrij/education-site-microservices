@@ -41,7 +41,7 @@ public class CourseController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') OR hasAuthority('ROLE_USER')")
-    public ResponseEntity<CourseResponseDTO> getCourseById(@PathVariable(value = "id", required = false) Long id) throws Exception {
+    public ResponseEntity<CourseResponseDTO> getCourseById(@PathVariable(value = "id", required = false) Long id) {
 
         return new ResponseEntity<>(courseService.getCourseById(id), HttpStatus.OK);
     }
@@ -56,9 +56,16 @@ public class CourseController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public ResponseEntity<String> deleteCourse(@PathVariable(value = "id", required = false) Long id) throws Exception {
+    public ResponseEntity<String> deleteCourse(@PathVariable(value = "id", required = false) Long id) {
         courseService.deleteCourse(id);
         return new ResponseEntity<>("Course deleted successfully", HttpStatus.OK);
     }
 
+
+//    @DeleteMapping("/{courseCode}/valid")
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN') OR hasAuthority('ROLE_USER')")
+//    public ResponseEntity<Boolean> isValidCourse(@PathVariable(value = "courseCode", required = true) String courseCode) {
+//
+//        return new ResponseEntity<>(courseService.isValidCourse(courseCode), HttpStatus.OK);
+//    }
 }

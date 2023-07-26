@@ -16,6 +16,7 @@
 
     <modules>
         <module>course-service</module>
+        <module>student-service</module>
     </modules>
 
     <properties>

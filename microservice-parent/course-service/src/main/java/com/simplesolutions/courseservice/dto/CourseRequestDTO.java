@@ -1,7 +1,7 @@
 package com.simplesolutions.courseservice.dto;
 
 import com.simplesolutions.courseservice.model.Status;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,15 +19,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CourseRequestDTO {
-    @NotNull(message = "Course name must be not null")
-    @NotBlank(message = "Course name must be not empty")
+    @NotEmpty(message = "Course name must be non null and empty")
     private String courseName;
-    @NotNull(message = "Course code must be not null")
-    @NotBlank(message = "Course code must be not empty")
+    @NotEmpty(message = "Course code must be non null and empty")
     private String courseCode;
     @NotNull(message = "Course credit must be not null")
     private Integer credit;
-    @NotNull(message = "Course credit must be not null")
+    @NotNull(message = "Course status must be not null")
     private Status status;
 }
 

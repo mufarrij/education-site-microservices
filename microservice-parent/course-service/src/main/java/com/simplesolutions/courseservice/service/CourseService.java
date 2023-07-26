@@ -3,6 +3,7 @@ package com.simplesolutions.courseservice.service;
 import com.simplesolutions.courseservice.dto.CourseRequestDTO;
 import com.simplesolutions.courseservice.dto.CourseResponseDTO;
 import com.simplesolutions.courseservice.exception.ResourceNotFoundException;
+import com.simplesolutions.courseservice.exception.ValidationException;
 import com.simplesolutions.courseservice.mapper.CourseRequestMapper;
 import com.simplesolutions.courseservice.mapper.CourseResponseMapper;
 import com.simplesolutions.courseservice.model.Course;
@@ -11,8 +12,6 @@ import com.simplesolutions.courseservice.repository.CourseRepository;
 import io.jsonwebtoken.lang.Collections;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,15 +27,18 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class CourseService {
-    private static final Logger logger = LoggerFactory.getLogger(CourseService.class);
     private final CourseRepository courseRepository;
     private final CourseRequestMapper courseRequestMapper;
     private final CourseResponseMapper courseResponseMapper;
 
     @Transactional
     public CourseResponseDTO createCourse(CourseRequestDTO courseRequestDTO) {
+        courseRepository.findByCourseCode(courseRequestDTO.getCourseCode()).ifPresent(x-> {
+            throw new ValidationException(String.format("Course with codeCode: %s already exists",
+                    courseRequestDTO.getCourseCode()));
+        });
         Course course = courseRepository.save(courseRequestMapper.map(courseRequestDTO));
-        logger.info("Course with id: {} successfully saved.", course.getId());
+        log.info("Course with id: {} successfully saved.", course.getId());
         return courseResponseMapper.map(course);
     }
 
@@ -58,7 +60,7 @@ public class CourseService {
         courseRepository.findById(id).
                 orElseThrow(() -> new ResourceNotFoundException(String.format("Course with id: %d not found", id)));
         courseRepository.deleteById(id);
-        logger.info("Course with id: {} successfully deleted", id);
+        log.info("Course with id: {} successfully deleted", id);
     }
 
     public List<CourseResponseDTO> findCoursesByCodeAndStatus(List<String> courseCode, List<Status> status) {

@@ -5,6 +5,7 @@ import com.simplesolutions.courseservice.model.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Repository to be used to delegate CRUD operations on {@link Course} entity against
@@ -20,4 +21,6 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
     List<Course> findByCourseCodeIn(List<String> courseCode);
 
     List<Course> findByStatusIn(List<Status> status);
+
+    Optional<Course> findByCourseCode(String courseCode);
 }
