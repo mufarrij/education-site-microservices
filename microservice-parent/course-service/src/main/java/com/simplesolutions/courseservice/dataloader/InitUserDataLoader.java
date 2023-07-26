@@ -1,12 +1,14 @@
 package com.simplesolutions.courseservice.dataloader;
 
-import com.simplesolutions.courseservice.dto.UserRequestDTO;
-import com.simplesolutions.courseservice.service.UserService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
+
+import com.simplesolutions.courseservice.dto.UserRequestDTO;
+import com.simplesolutions.courseservice.service.UserService;
+
+import lombok.RequiredArgsConstructor;
 
 /**
  * This class is created only for initial admin user data loading (one-time)

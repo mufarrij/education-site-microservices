@@ -1,15 +1,17 @@
 package com.simplesolutions.studentservice.security;
 
-import com.simplesolutions.studentservice.dto.AuthenticationRequestDTO;
-import com.simplesolutions.studentservice.dto.AuthenticationResponseDTO;
-import com.simplesolutions.studentservice.exception.UnAuthorizedException;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+
+import com.simplesolutions.studentservice.dto.AuthenticationRequestDTO;
+import com.simplesolutions.studentservice.dto.AuthenticationResponseDTO;
+import com.simplesolutions.studentservice.exception.UnAuthorizedException;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Utility class for token generation for given credentials

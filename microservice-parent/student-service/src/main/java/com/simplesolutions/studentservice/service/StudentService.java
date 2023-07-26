@@ -1,5 +1,13 @@
 package com.simplesolutions.studentservice.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.simplesolutions.studentservice.dto.StudentCourseDetailDTO;
 import com.simplesolutions.studentservice.dto.StudentRequestDTO;
 import com.simplesolutions.studentservice.dto.StudentResponseDTO;
@@ -10,15 +18,9 @@ import com.simplesolutions.studentservice.model.Enrollment;
 import com.simplesolutions.studentservice.model.Student;
 import com.simplesolutions.studentservice.repository.EnrollmentRepository;
 import com.simplesolutions.studentservice.repository.StudentRepository;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Service class to hold business logic related {@link Student}

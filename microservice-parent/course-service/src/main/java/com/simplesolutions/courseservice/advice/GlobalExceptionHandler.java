@@ -1,8 +1,9 @@
 package com.simplesolutions.courseservice.advice;
 
-import com.simplesolutions.courseservice.exception.ExceptionResponse;
-import com.simplesolutions.courseservice.exception.ResourceNotFoundException;
-import com.simplesolutions.courseservice.exception.ValidationException;
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -16,9 +17,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.stream.Collectors;
+import com.simplesolutions.courseservice.exception.ExceptionResponse;
+import com.simplesolutions.courseservice.exception.ResourceNotFoundException;
+import com.simplesolutions.courseservice.exception.ValidationException;
 
 /**
  * Global Exception Handler

@@ -1,8 +1,8 @@
 package com.simplesolutions.courseservice.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-
 import java.util.Arrays;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
 
 /**
  * Enum to represent availability status of the course

@@ -1,12 +1,17 @@
 package com.simplesolutions.studentservice.configuration;
 
-import com.simplesolutions.studentservice.mapper.*;
-import com.simplesolutions.studentservice.security.TokenGeneratorUtil;
-import com.simplesolutions.studentservice.service.StudentService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
+
+import com.simplesolutions.studentservice.mapper.EnrollmentRequestMapper;
+import com.simplesolutions.studentservice.mapper.StudentRequestMapper;
+import com.simplesolutions.studentservice.mapper.StudentResponseMapper;
+import com.simplesolutions.studentservice.mapper.UserMapper;
+import com.simplesolutions.studentservice.mapper.UserPrincipleMapper;
+import com.simplesolutions.studentservice.security.TokenGeneratorUtil;
+import com.simplesolutions.studentservice.service.StudentService;
 
 /**
  * Bean definitions related to app config

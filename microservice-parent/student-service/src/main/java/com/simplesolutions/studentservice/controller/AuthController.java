@@ -1,13 +1,5 @@
 package com.simplesolutions.studentservice.controller;
 
-import com.simplesolutions.studentservice.dto.AuthenticationRequestDTO;
-import com.simplesolutions.studentservice.dto.AuthenticationResponseDTO;
-import com.simplesolutions.studentservice.dto.UserRequestDTO;
-import com.simplesolutions.studentservice.security.JwtProvider;
-import com.simplesolutions.studentservice.service.UserService;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,6 +9,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.simplesolutions.studentservice.dto.AuthenticationRequestDTO;
+import com.simplesolutions.studentservice.dto.AuthenticationResponseDTO;
+import com.simplesolutions.studentservice.dto.UserRequestDTO;
+import com.simplesolutions.studentservice.security.JwtProvider;
+import com.simplesolutions.studentservice.service.UserService;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Controller class to handle Authorization related REST API requests

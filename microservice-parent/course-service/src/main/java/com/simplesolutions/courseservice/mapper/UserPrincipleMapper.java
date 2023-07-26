@@ -1,12 +1,13 @@
 package com.simplesolutions.courseservice.mapper;
 
-import com.simplesolutions.courseservice.model.User;
-import com.simplesolutions.courseservice.security.UserPrincipal;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import com.simplesolutions.courseservice.model.User;
+import com.simplesolutions.courseservice.security.UserPrincipal;
 
 /**
  * Mapper class to map {@link User}

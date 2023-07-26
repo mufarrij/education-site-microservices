@@ -1,13 +1,15 @@
 package com.simplesolutions.studentservice.service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
 import com.simplesolutions.studentservice.dto.UserRequestDTO;
 import com.simplesolutions.studentservice.mapper.UserMapper;
 import com.simplesolutions.studentservice.model.User;
 import com.simplesolutions.studentservice.repository.UserRepository;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
 
 /**
  * Service class to hold business logic related {@link User}

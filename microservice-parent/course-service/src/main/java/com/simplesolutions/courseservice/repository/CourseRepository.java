@@ -1,11 +1,12 @@
 package com.simplesolutions.courseservice.repository;
 
-import com.simplesolutions.courseservice.model.Course;
-import com.simplesolutions.courseservice.model.Status;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.simplesolutions.courseservice.model.Course;
+import com.simplesolutions.courseservice.model.Status;
 
 /**
  * Repository to be used to delegate CRUD operations on {@link Course} entity against

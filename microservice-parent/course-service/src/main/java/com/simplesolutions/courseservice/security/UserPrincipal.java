@@ -1,10 +1,11 @@
 package com.simplesolutions.courseservice.security;
 
-import lombok.Builder;
+import java.util.Collection;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
+import lombok.Builder;
 
 /**
  * Class to hold core user information. implements {@link UserDetails}.

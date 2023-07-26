@@ -1,12 +1,13 @@
 package com.simplesolutions.studentservice.mapper;
 
-import com.simplesolutions.studentservice.model.User;
-import com.simplesolutions.studentservice.security.UserPrincipal;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import com.simplesolutions.studentservice.model.User;
+import com.simplesolutions.studentservice.security.UserPrincipal;
 
 /**
  * Mapper class to map {@link User}

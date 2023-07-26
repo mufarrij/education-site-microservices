@@ -1,13 +1,15 @@
 package com.simplesolutions.courseservice.service;
 
-import com.simplesolutions.courseservice.mapper.UserPrincipleMapper;
-import com.simplesolutions.courseservice.model.User;
-import com.simplesolutions.courseservice.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import com.simplesolutions.courseservice.mapper.UserPrincipleMapper;
+import com.simplesolutions.courseservice.model.User;
+import com.simplesolutions.courseservice.repository.UserRepository;
+
+import lombok.RequiredArgsConstructor;
 
 /**
  * Implements {@link UserDetailsService}, utilized to fetch

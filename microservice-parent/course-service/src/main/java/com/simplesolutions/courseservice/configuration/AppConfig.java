@@ -1,11 +1,12 @@
 package com.simplesolutions.courseservice.configuration;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
 import com.simplesolutions.courseservice.mapper.CourseRequestMapper;
 import com.simplesolutions.courseservice.mapper.CourseResponseMapper;
 import com.simplesolutions.courseservice.mapper.UserMapper;
 import com.simplesolutions.courseservice.mapper.UserPrincipleMapper;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * Bean definitions related to app config

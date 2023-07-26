@@ -1,8 +1,11 @@
 package com.simplesolutions.studentservice.advice;
 
-import com.simplesolutions.studentservice.exception.ExceptionResponse;
-import com.simplesolutions.studentservice.exception.ResourceNotFoundException;
-import com.simplesolutions.studentservice.exception.UnAuthorizedException;
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import javax.xml.bind.ValidationException;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -15,10 +18,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import javax.xml.bind.ValidationException;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.stream.Collectors;
+import com.simplesolutions.studentservice.exception.ExceptionResponse;
+import com.simplesolutions.studentservice.exception.ResourceNotFoundException;
+import com.simplesolutions.studentservice.exception.UnAuthorizedException;
 
 /**
  * Global Exception Handler

@@ -1,5 +1,10 @@
 package com.simplesolutions.courseservice.service;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.simplesolutions.courseservice.dto.CourseRequestDTO;
 import com.simplesolutions.courseservice.dto.CourseResponseDTO;
 import com.simplesolutions.courseservice.exception.ResourceNotFoundException;
@@ -9,13 +14,10 @@ import com.simplesolutions.courseservice.mapper.CourseResponseMapper;
 import com.simplesolutions.courseservice.model.Course;
 import com.simplesolutions.courseservice.model.Status;
 import com.simplesolutions.courseservice.repository.CourseRepository;
+
 import io.jsonwebtoken.lang.Collections;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * Service class to hold business logic related {@link Course}

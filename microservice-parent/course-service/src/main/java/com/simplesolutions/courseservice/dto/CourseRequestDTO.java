@@ -1,6 +1,7 @@
 package com.simplesolutions.courseservice.dto;
 
 import com.simplesolutions.courseservice.model.Status;
+
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

@@ -1,8 +1,9 @@
 package com.simplesolutions.studentservice.repository;
 
-import com.simplesolutions.studentservice.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.simplesolutions.studentservice.model.Student;
 
 /**
  * Repository to be used to delegate CRUD operations on {@link Student} entity against

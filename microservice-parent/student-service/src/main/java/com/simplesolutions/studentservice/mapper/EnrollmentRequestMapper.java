@@ -5,6 +5,7 @@ import com.simplesolutions.studentservice.exception.ResourceNotFoundException;
 import com.simplesolutions.studentservice.model.Enrollment;
 import com.simplesolutions.studentservice.model.Student;
 import com.simplesolutions.studentservice.service.StudentService;
+
 import lombok.RequiredArgsConstructor;
 
 /**

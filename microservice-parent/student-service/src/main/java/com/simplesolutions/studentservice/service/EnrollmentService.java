@@ -1,15 +1,8 @@
 package com.simplesolutions.studentservice.service;
 
-import com.simplesolutions.studentservice.dto.CourseDTO;
-import com.simplesolutions.studentservice.dto.EnrollmentRequestDTO;
-import com.simplesolutions.studentservice.exception.ResourceNotFoundException;
-import com.simplesolutions.studentservice.exception.ValidationException;
-import com.simplesolutions.studentservice.mapper.EnrollmentRequestMapper;
-import com.simplesolutions.studentservice.model.Student;
-import com.simplesolutions.studentservice.repository.EnrollmentRepository;
-import com.simplesolutions.studentservice.security.TokenGeneratorUtil;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -19,8 +12,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.simplesolutions.studentservice.dto.CourseDTO;
+import com.simplesolutions.studentservice.dto.EnrollmentRequestDTO;
+import com.simplesolutions.studentservice.exception.ResourceNotFoundException;
+import com.simplesolutions.studentservice.exception.ValidationException;
+import com.simplesolutions.studentservice.mapper.EnrollmentRequestMapper;
+import com.simplesolutions.studentservice.model.Student;
+import com.simplesolutions.studentservice.repository.EnrollmentRepository;
+import com.simplesolutions.studentservice.security.TokenGeneratorUtil;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Service class to hold business logic related {@link Student} course enrollment
