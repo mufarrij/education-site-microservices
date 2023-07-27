@@ -19,4 +19,5 @@ import com.simplesolutions.studentservice.model.Student;
 public interface EnrollmentRepository extends JpaRepository<Enrollment, Long> {
     List<Enrollment> findByStudentId(Long studentId);
     List<Enrollment> findByCourseCodeAndStudentId(String courseCode, Long studentId);
+    void deleteByStudentId(Long studentId);
 }

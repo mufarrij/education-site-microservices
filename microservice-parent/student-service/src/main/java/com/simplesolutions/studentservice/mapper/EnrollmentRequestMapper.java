@@ -1,7 +1,6 @@
 package com.simplesolutions.studentservice.mapper;
 
 import com.simplesolutions.studentservice.dto.EnrollmentRequestDTO;
-import com.simplesolutions.studentservice.exception.ResourceNotFoundException;
 import com.simplesolutions.studentservice.model.Enrollment;
 import com.simplesolutions.studentservice.model.Student;
 import com.simplesolutions.studentservice.service.StudentService;
@@ -19,9 +18,7 @@ public class EnrollmentRequestMapper extends Mapper<EnrollmentRequestDTO, Enroll
 
     @Override
     public Enrollment map(EnrollmentRequestDTO entity) {
-        Student student = studentService.findByStudentId(entity.getStudentId()).
-                orElseThrow(() -> new ResourceNotFoundException(String.format("Student with id: %d not found", entity.getStudentId())));
-
+        Student student = studentService.validateStudent(entity.getStudentId());
         return Enrollment.builder().courseCode(entity.getCourseCode()).student(student).build();
     }
 }

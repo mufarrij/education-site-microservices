@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import javax.xml.bind.ValidationException;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -21,6 +19,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import com.simplesolutions.studentservice.exception.ExceptionResponse;
 import com.simplesolutions.studentservice.exception.ResourceNotFoundException;
 import com.simplesolutions.studentservice.exception.UnAuthorizedException;
+import com.simplesolutions.studentservice.exception.ValidationException;
 
 /**
  * Global Exception Handler
