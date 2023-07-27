@@ -22,6 +22,7 @@ import com.simplesolutions.courseservice.dto.CourseResponseDTO;
 import com.simplesolutions.courseservice.model.Status;
 import com.simplesolutions.courseservice.service.CourseService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
@@ -38,18 +39,21 @@ public class CourseController {
 
     private final CourseService courseService;
 
+    @Operation(summary = "Save a new course with the given detail")
     @PostMapping
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<CourseResponseDTO> createCourse(@RequestBody @Valid CourseRequestDTO courseRequestDTO) {
         return new ResponseEntity<>(courseService.createCourse(courseRequestDTO), HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Update the details of a specific course")
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<CourseResponseDTO> updateCourse(@PathVariable(value = "id") Long id, @RequestBody @Valid CourseRequestDTO courseRequestDTO) throws Exception {
         return new ResponseEntity<>(courseService.updateCourse(id, courseRequestDTO), HttpStatus.OK);
     }
 
+    @Operation(summary = "Retrieve a specific course by ID")
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') OR hasAuthority('ROLE_USER')")
     public ResponseEntity<CourseResponseDTO> getCourseById(@PathVariable(value = "id", required = false) Long id) {
@@ -57,6 +61,7 @@ public class CourseController {
         return new ResponseEntity<>(courseService.getCourseById(id), HttpStatus.OK);
     }
 
+    @Operation(summary = "Retrieve list of existing courses filtered by attributes")
     @GetMapping
     @PreAuthorize("hasAuthority('ROLE_ADMIN') OR hasAuthority('ROLE_USER')")
     public ResponseEntity<List<CourseResponseDTO>> getCourses(@RequestParam(value = "courseCode", defaultValue = "", required = false) List<String> courseCode,
@@ -65,18 +70,11 @@ public class CourseController {
         return new ResponseEntity<>(courseService.findCoursesByCodeAndStatus(courseCode, status), HttpStatus.OK);
     }
 
+    @Operation(summary = "Delete specific course with the given ID")
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> deleteCourse(@PathVariable(value = "id", required = false) Long id) {
         courseService.deleteCourse(id);
         return new ResponseEntity<>("Course deleted successfully", HttpStatus.OK);
     }
-
-
-//    @DeleteMapping("/{courseCode}/valid")
-//    @PreAuthorize("hasAuthority('ROLE_ADMIN') OR hasAuthority('ROLE_USER')")
-//    public ResponseEntity<Boolean> isValidCourse(@PathVariable(value = "courseCode", required = true) String courseCode) {
-//
-//        return new ResponseEntity<>(courseService.isValidCourse(courseCode), HttpStatus.OK);
-//    }
 }

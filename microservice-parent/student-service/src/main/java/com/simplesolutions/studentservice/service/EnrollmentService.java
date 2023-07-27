@@ -49,6 +49,10 @@ public class EnrollmentService {
                 enrollmentRequest.getStudentId(), enrollmentRequest.getCourseCode());
     }
 
+    public boolean isEnrolled(String courseCode) {
+        return enrollmentRepository.findByCourseCode(courseCode).size() > 0;
+    }
+
     private void validateEnrollment(EnrollmentRequestDTO enrollment) {
 
         if (courseService.isCourseAvailable(enrollment.getCourseCode())) {

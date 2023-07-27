@@ -30,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CourseService {
     private final CourseRepository courseRepository;
+    private final StudentService studentService;
     private final CourseRequestMapper courseRequestMapper;
     private final CourseResponseMapper courseResponseMapper;
 
@@ -46,9 +47,7 @@ public class CourseService {
 
     @Transactional
     public CourseResponseDTO updateCourse(Long id, CourseRequestDTO courseRequestDTO) {
-        Course course = courseRepository.findById(id).
-                orElseThrow(() -> new ResourceNotFoundException(String.format("Course with id: %d not found", id)));
-
+        Course course = findCourseById(id);
         course.setCourseCode(courseRequestDTO.getCourseCode());
         course.setCourseName(courseRequestDTO.getCourseName());
         course.setCredit(courseRequestDTO.getCredit());
@@ -59,8 +58,7 @@ public class CourseService {
 
     @Transactional
     public void deleteCourse(Long id) {
-        courseRepository.findById(id).
-                orElseThrow(() -> new ResourceNotFoundException(String.format("Course with id: %d not found", id)));
+        validateDeletion(id);
         courseRepository.deleteById(id);
         log.info("Course with id: {} successfully deleted", id);
     }
@@ -85,9 +83,20 @@ public class CourseService {
     }
 
     public CourseResponseDTO getCourseById(Long id) {
-        Course course = courseRepository.findById(id).
+        return courseResponseMapper.map(findCourseById(id));
+    }
+
+    private void validateDeletion(Long id) {
+        Course course = findCourseById(id);
+        if (studentService.isEnrollmentsExist(course.getCourseCode())) {
+            throw new ValidationException(String.format("Course with given id: %d can't be deleted as it " +
+                    "has ongoing enrollments", id));
+        }
+    }
+
+    private Course findCourseById(Long id) {
+        return courseRepository.findById(id).
                 orElseThrow(() -> new ResourceNotFoundException(String.format("Course with id: %d not found", id)));
-        return courseResponseMapper.map(course);
     }
 
 }

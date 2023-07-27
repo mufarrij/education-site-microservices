@@ -1,6 +1,9 @@
 package com.simplesolutions.studentservice.controller;
 
+import jakarta.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,8 +19,8 @@ import com.simplesolutions.studentservice.dto.UserRequestDTO;
 import com.simplesolutions.studentservice.security.JwtProvider;
 import com.simplesolutions.studentservice.service.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -35,6 +38,7 @@ public class AuthController {
     private final JwtProvider tokenProvider;
     private final UserService userService;
 
+    @Operation(summary = "Authenticate given user credentials and generate JWT")
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponseDTO> authenticateUser(@RequestBody @Valid AuthenticationRequestDTO authRequest) {
         Authentication authentication = authenticationManager
@@ -44,8 +48,9 @@ public class AuthController {
         return ResponseEntity.ok(new AuthenticationResponseDTO(jwt));
     }
 
+    @Operation(summary = "Register a new user with provided credentials")
     @PostMapping("/signup")
-//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public String addUser(@RequestBody @Valid UserRequestDTO userDTO) {
         return userService.addUser(userDTO);
     }

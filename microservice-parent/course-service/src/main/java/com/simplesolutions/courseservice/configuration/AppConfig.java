@@ -1,12 +1,15 @@
 package com.simplesolutions.courseservice.configuration;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 import com.simplesolutions.courseservice.mapper.CourseRequestMapper;
 import com.simplesolutions.courseservice.mapper.CourseResponseMapper;
 import com.simplesolutions.courseservice.mapper.UserMapper;
 import com.simplesolutions.courseservice.mapper.UserPrincipleMapper;
+import com.simplesolutions.courseservice.security.TokenGeneratorUtil;
 
 /**
  * Bean definitions related to app config
@@ -34,5 +37,15 @@ public class AppConfig {
     @Bean
     public UserPrincipleMapper getUserPrincipleMapper() {
         return new UserPrincipleMapper();
+    }
+
+    @Bean
+    public TokenGeneratorUtil getTokenGenerator(@Qualifier("restTemplate") RestTemplate restTemplate) {
+        return new TokenGeneratorUtil(restTemplate);
+    }
+
+    @Bean
+    public RestTemplate restTemplate(){
+        return new RestTemplate();
     }
 }

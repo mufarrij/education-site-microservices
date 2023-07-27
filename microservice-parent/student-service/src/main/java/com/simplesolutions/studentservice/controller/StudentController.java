@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.simplesolutions.studentservice.dto.StudentCourseDetailDTO;
 import com.simplesolutions.studentservice.dto.StudentRequestDTO;
 import com.simplesolutions.studentservice.dto.StudentResponseDTO;
-import com.simplesolutions.studentservice.service.EnrollmentService;
 import com.simplesolutions.studentservice.service.StudentService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
@@ -40,32 +40,37 @@ import lombok.RequiredArgsConstructor;
 public class StudentController {
 
     private final StudentService studentService;
-    private final EnrollmentService enrollmentService;
 
+    @Operation(summary = "Register a new student with the provided details")
     @PostMapping
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<StudentResponseDTO> registerStudent(@RequestBody @Valid StudentRequestDTO studentRequestDTO) {
         return new ResponseEntity<>(studentService.registerStudent(studentRequestDTO), HttpStatus.CREATED);
     }
 
+
+    @Operation(summary = "Update the details of a specific student")
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<StudentResponseDTO> updateStudent(@PathVariable(value = "id") Long id, @RequestBody @Valid StudentRequestDTO studentRequestDTO) {
         return new ResponseEntity<>(studentService.updateStudent(id, studentRequestDTO), HttpStatus.OK);
     }
 
+    @Operation(summary = "Delete specific student with the given ID")
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> deleteStudent(@PathVariable(value = "id") Long id) {
         studentService.deleteStudent(id);
         return new ResponseEntity<>("Student deleted successfully", HttpStatus.OK);    }
 
+    @Operation(summary = "")
     @GetMapping("/courses")
     @PreAuthorize("hasAuthority('ROLE_ADMIN') OR hasAuthority('ROLE_USER')")
     public ResponseEntity<List<StudentCourseDetailDTO>> getStudentsCourseDetail() {
         return new ResponseEntity<>(studentService.getStudentCourseDetails(), HttpStatus.OK);
     }
 
+    @Operation(summary = "Update the courses for specific student")
     @PutMapping("/{id}/courses")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> updateCourses(@PathVariable(value = "id") Long id,

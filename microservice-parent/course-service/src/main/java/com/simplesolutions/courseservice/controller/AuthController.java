@@ -19,6 +19,7 @@ import com.simplesolutions.courseservice.dto.UserRequestDTO;
 import com.simplesolutions.courseservice.security.JwtProvider;
 import com.simplesolutions.courseservice.service.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
@@ -37,6 +38,7 @@ public class AuthController {
     private final JwtProvider tokenProvider;
     private final UserService userService;
 
+    @Operation(summary = "Authenticate given user credentials and generate JWT")
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponseDTO> authenticateUser(@RequestBody @Valid AuthenticationRequestDTO authRequest) {
         Authentication authentication = authenticationManager
@@ -46,6 +48,7 @@ public class AuthController {
         return ResponseEntity.ok(new AuthenticationResponseDTO(jwt));
     }
 
+    @Operation(summary = "Register a new user with provided credentials")
     @PostMapping("/signup")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public String addUser(@RequestBody @Valid UserRequestDTO userDTO) {
