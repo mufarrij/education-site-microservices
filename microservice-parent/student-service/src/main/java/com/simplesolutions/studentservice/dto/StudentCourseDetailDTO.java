@@ -1,11 +1,11 @@
 package com.simplesolutions.studentservice.dto;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 /**
  * DTO which hold data regarding student-course enrollment details
@@ -19,5 +19,5 @@ import java.util.List;
 @NoArgsConstructor
 public class StudentCourseDetailDTO {
     private StudentResponseDTO student;
-    private List<String> enrolledCourses;
+    private List<CourseDTO> enrolledCourses;
 }

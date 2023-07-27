@@ -85,8 +85,8 @@ public class StudentService {
         List<StudentCourseDetailDTO> studentCourseDetailList = new ArrayList<>();
 
         for (Student student : students) {
-            List<String> courses = enrollmentRepository.findByStudentId(student.getId()).stream().map(Enrollment::getCourseCode)
-                    .collect(Collectors.toList());
+            List<CourseDTO> courses = courseService.
+                    getAvailableCoursesByCourseCode(getEnrolledCourseCodes(student.getId()));
             StudentCourseDetailDTO studentCourseDetail = StudentCourseDetailDTO.builder()
                     .student(studentResponseMapper.map(student)).enrolledCourses(courses).build();
             studentCourseDetailList.add(studentCourseDetail);
@@ -105,5 +105,10 @@ public class StudentService {
         if (courseList.size() != coursesCodes.size()) {
             throw new ValidationException("Courses with some given course codes does not exist or available");
         }
+    }
+
+    private List<String> getEnrolledCourseCodes(Long studentId){
+       return enrollmentRepository.findByStudentId(studentId).stream().map(Enrollment::getCourseCode)
+                .collect(Collectors.toList());
     }
 }
