@@ -13,6 +13,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -64,6 +65,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .timestamp(LocalDateTime.now())
                 .build();
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ResourceAccessException.class)
+    public ResponseEntity<ExceptionResponse> handleResourceAccessException(Exception ex) {
+        ExceptionResponse response = ExceptionResponse.builder()
+                .errorCode(HttpStatus.BAD_GATEWAY.value())
+                .error(HttpStatus.BAD_GATEWAY)
+                .errorMessage(Arrays.asList(ex.getMessage()))
+                .timestamp(LocalDateTime.now())
+                .build();
+        System.out.println(ex);
+        return new ResponseEntity<>(response, HttpStatus.BAD_GATEWAY);
     }
 
     @ExceptionHandler(UnAuthorizedException.class)
