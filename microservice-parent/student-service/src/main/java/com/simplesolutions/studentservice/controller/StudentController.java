@@ -79,5 +79,10 @@ public class StudentController {
         return new ResponseEntity<>("Courses successfully updated", HttpStatus.OK);
     }
 
-
+    @Operation(summary = "Retrieve all registered students list")
+    @GetMapping
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') OR hasAuthority('ROLE_USER')")
+    public ResponseEntity<List<StudentResponseDTO>> getStudents() {
+        return new ResponseEntity<>(studentService.getAllStudents(), HttpStatus.OK);
+    }
 }

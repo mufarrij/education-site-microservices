@@ -95,6 +95,10 @@ public class StudentService {
         return studentCourseDetailList;
     }
 
+    public List<StudentResponseDTO> getAllStudents() {
+      return studentResponseMapper.map(studentRepository.findAll());
+    }
+
     public Student validateStudent(Long studentId) {
         return studentRepository.findById(studentId).
                 orElseThrow(() -> new ResourceNotFoundException(String.format("Student with id: %d not found", studentId)));
